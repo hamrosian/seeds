@@ -1,1 +1,9 @@
-
+#+title: Seeds - A cellular automata
+* What is seeds?
+Seeds is a cellular automata, similar to Conway's "Game of Life", which produces complex behaviours despite each cell's state being dictated by incredibly simple rules. As such, it serves as an excellent example of the phenomena of emergence, and how complex behaviours can be exhibited entirely through structural, large scale factors.
+* What are the rules of seeds?
+There is really only two rules that each cell must follow. If an off cell has exactly 2 neighbhors, it turns on. Every other cell turns off.
+* Is seeds Turing-Complete?
+I don't know. At a glance it sure seems that way, but I haven't found any rigourous proofs for this claim.
+* How do I compile seeds on my machine?
+You should be able to use the makefile directly. You should ensure that you have raylib, X11 and pthreads installed on your machine, as well as gcc. There are also precompiled binaries available in the builds folder, though I would recommend compiling the program yourself.
