@@ -1,24 +1,25 @@
 # Define the compiler
-CC = gcc
+CC = icx
 
 # Define the compiler flags
-CFLAGS = -Wall -Wextra -I/usr/local/include
+CFLAGS = -Wall -Wextra -qopenmp -I/usr/local/include
 
 # Define the linker flags
-LDFLAGS = -L/usr/local/lib -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+LDFLAGS = -L/usr/local/lib -qopenmp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
 # Source and build directories
 SRC_DIR = src
-BUILD_DIR = builds
+BIN_DIR = bin
+OBJ_DIR = obj
 
 # Find all .c files in the src directory
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 
 # Create object files for each .c file
-OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # The name of the executable
-TARGET = $(BUILD_DIR)/seeds
+TARGET = $(BIN_DIR)/seeds
 
 # Default target
 all: $(TARGET)
@@ -28,8 +29,8 @@ $(TARGET): $(OBJS)
 	$(CC) $(OBJS) -o $@ $(LDFLAGS)
 
 # Compile .c files to .o files
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(BUILD_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean up build files

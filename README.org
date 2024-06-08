@@ -5,5 +5,7 @@ Seeds is a cellular automata, similar to Conway's "Game of Life", which produces
 There is really only two rules that each cell must follow. If an off cell has exactly 2 neighbhors, it turns on. Every other cell turns off.
 * Is seeds Turing-Complete?
 I don't know. At a glance it sure seems that way, but I haven't found any rigourous proofs for this claim.
+* What makes this implementation different?
+This implementation of seeds is designed to be "performant", while also being exactly deterministic (i.e. using integers instead of floats and using only integer based operations). As such, certain optimisations such as using FFT-based convolutions or using stochastic approximations aren't used. Additionally, this implementation is parallelised using OpenMP, so as to be more performant on modern multi-core multi-threaded machines.
 * How do I compile seeds on my machine?
-You should be able to use the makefile directly. You should ensure that you have raylib, X11 and pthreads installed on your machine, as well as gcc. There are also precompiled binaries available in the builds folder, though I would recommend compiling the program yourself.
+You should be able to use the makefile directly. You should ensure that you have raylib, X11 and pthreads installed on your machine. The program can be compiled by any C compiler of your choice, though you will have to change the makefile to do this. Personally, I recommend Intel compilers (icx or icc) for intel machines, and the GNU C Compiler (gcc) for other machines. There are also precompiled binaries (compiled using icx) available in the bin folder, though I would recommend compiling the program yourself.
